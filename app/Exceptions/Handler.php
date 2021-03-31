@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Log;
+use Illuminate\Support\Facades\Log;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
@@ -45,6 +45,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e) {
         if ($e instanceof \Illuminate\Auth\AuthenticationException) {
+            Log::info("Erreur: " . $e);
             return ResponseBuilder::error(403, null, ['User have not permission for this request'], 403);
         }
         if ($e instanceof ModelNotFoundException) {

@@ -127,7 +127,7 @@ class JeuController extends Controller {
         $jeu->mecaniques()->attach($request->avec_mecaniques);
         $jeu->save();
 
-        return ResponseBuilder::success(new jeuxResource($jeu));
+        return ResponseBuilder::success(new JeuxResource($jeu));
 
     }
 
