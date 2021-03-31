@@ -14,6 +14,13 @@ use Illuminate\Validation\Rule;
 use MarcinOrlowski\ResponseBuilder\ResponseBuilder;
 
 class JeuController extends Controller {
+/*    public function __construct() {
+        $this->middleware('api', ['except' => ['index', 'show']]);
+    }*/
+
+
+
+
     function index(Request $request) {
         $userId = $request->get('user', null);
         $themeId = $request->get('theme', null);
@@ -123,12 +130,8 @@ class JeuController extends Controller {
                     $jeu->url_media = '/imagesjeux/'.$filename;
                 );
         */
-
-        $jeu->mecaniques()->attach($request->avec_mecaniques);
         $jeu->save();
-
         return ResponseBuilder::success(new JeuxResource($jeu));
-
     }
 
 

@@ -7,7 +7,7 @@ use App\Models\Jeu;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\DB;
 
-class jeuxDetailsResource extends JsonResource {
+class JeuxDetailsResource extends JsonResource {
     /**
      * Transform the resource into an array.
      *
@@ -91,6 +91,7 @@ class jeuxDetailsResource extends JsonResource {
             "user_id" => $this->user,
             "theme_id" => $this->theme,
             "editeur_id" => $this->editeur,
+            "mecaniques" => MecaniquesResource::collection($this->mecaniques),
             "commentaires" => CommentaireResource::collection($this->commentaires),
             "statistiques" => [
                 "noteMax" => $noteMax,
